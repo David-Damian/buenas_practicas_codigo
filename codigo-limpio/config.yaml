@@ -1,0 +1,4 @@
+main:
+  components_repository: "https://github.com/David-Damian/buenas_practicas_codigo"
+  project_name: tranformando_codigo_sucio_a_código_limpio
+  steps: all
