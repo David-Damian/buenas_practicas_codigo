@@ -1,8 +1,12 @@
-"""
+""" Paquete de limpieza de datos.
 Este script le permite al usuario hacer la carga y limpieza 
 del conjunto de validación y prueba.
 
+Este archivo puede importarse como modulo y contiene las siguientes funciones:
 
+    * cargar_datos: Carga de datos de entrenamiento y validación.
+    * fill_categorical_na: Rellena valores faltantes en vars. categoricas.
+    * fill_num_na: Rellena valores faltantes en variables numéricas.
 
 """
 import yaml
@@ -23,7 +27,7 @@ def cargar_datos():
     test_data (pd.DataFrame): Conjunto de datos de prueba.
     """
 
-    # Abrir yaml
+    # Abrir yaml para obtener ruta de los datos.
     with open("../config.yaml", "r") as file:
         config = yaml.safe_load(file)
 
