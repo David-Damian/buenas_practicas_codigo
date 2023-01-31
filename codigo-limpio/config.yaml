@@ -8,6 +8,5 @@ data:
   TEST_PATH: "../data/raw/test.csv"
 
 visualization:
-  FIGURES_PATH: "/figures/"
-  TRAIN_PATH: "../data/raw/train.csv"
+  FIGURES_PATH: "../figures/"
 
