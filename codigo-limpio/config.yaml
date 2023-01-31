@@ -4,5 +4,6 @@ main:
   steps: all
 
 data:
-  train_data: "data/raw/train.csv"
-  test_data: "data/raw/test.csv"
+  TRAIN_PATH: "../data/raw/train.csv"
+  TEST_PATH: "../data/raw/test.csv"
+
