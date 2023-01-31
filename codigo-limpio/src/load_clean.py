@@ -11,8 +11,6 @@ Este archivo puede importarse como modulo y contiene las siguientes funciones:
 """
 import yaml
 import pandas as pd
-import sys
-sys.path.append('/visualization/')
 
 #Hacer la carga de datos
 def cargar_datos():
@@ -31,10 +29,10 @@ def cargar_datos():
     with open("../config.yaml", "r") as file:
         config = yaml.safe_load(file)
 
-    # Conjunto de entrenamiento
+    # Almacenar onjunto de entrenamiento como dataframe
     train_data = pd.read_csv(config['data']['TRAIN_PATH'])
 
-    #Conjunto de prueba
+    # Alamacenar conjunto de prueba como dataframe
     test_data = pd.read_csv(config['data']['TEST_PATH'])
     
     return train_data, test_data
@@ -56,9 +54,10 @@ def fill_categorical_na(data, vars_incompletas, valor_nuevo):
                               imputación de nuevo valores.
     ---
     '''
-    data=data.copy()
+    # Copia de los datos de entrada
+    data = data.copy()
 
-    #Rellenar los datos NA con 'valor_nuevo'.
+    # Rellenar los datos NA con 'valor_nuevo'.
     for var in vars_incompletas: data[var].fillna(valor_nuevo, inplace=True)
 
     return data
@@ -79,9 +78,10 @@ def fill_num_na(data):
                               imputación de nuevo valores.
     ---
     '''
-    data=data.copy()
+    # Copia de los datos de entrada
+    data = data.copy()
 
-    #Rellenar los datos NA.
+    # Rellenar los datos NA.
     for col in data.columns:
         if((data[col].dtype == 'float64') or (data[col].dtype == 'int64')):
             data[col].fillna(data[col].mean(), inplace=True)
