@@ -20,9 +20,6 @@ def cargar_datos():
     train_data (pd.DataFrame): Conjunto de datos de entrenamiento.
     test_data (pd.DataFrame): Conjunto de datos de prueba.
     """
-    #Obtener directorio de trabajo actual
-    cwd = os.getcwd()
-    
 
     # Abrir yaml
     with open("../config.yaml", "r") as file:
@@ -36,31 +33,57 @@ def cargar_datos():
     
     return train_data, test_data
 
-def fill_datos_faltantes(data):
+def fill_categorical_na(data, vars_incompletas, valor_nuevo):
     '''
-    Rellena los datos faltantes en el conjunto de entrenamiento o prueba.
+    Rellena los datos faltantes para variables categoricas
+    en un set de datos.
 
     Args:
     -----
-    data(pd.DataFrame) :    Conjunto de entrenamiento o prueba.
+
+    vars_incompletas(List) :    Lista de variables con valores NA.
+    valor_nuevo: Valor que actualiza el dato con NA.
 
     Return:
     -------
-    Un par de dataframes:
-    train_transformed(pdDataFrame): Conjunto de datos transformado.
+    transf_data(pdDataFrame): Conjunto de datos de entrada con
+                              imputación de nuevo valores.
     ---
     '''
-    #Rellenar los datos NA con No
-    for var in variables_incompletas:
-        data[var].fillna("No", inplace=True)
+    data=data.copy()
 
-    # Rellena los datos faltantes de variables float o int con la media o moda.
+    #Rellenar los datos NA con 'valor_nuevo'.
+    for var in vars_incompletas: data[var].fillna(valor_nuevo, inplace=True)
+
+    return data
+
+def fill_num_na(data):
+    '''
+    Rellena los datos faltantes para variables numéricas.
+    A variables de tipo int o float64 se les imputa la media,
+    en otro caso, la moda.
+
+    Args:
+    -----
+    data(pd.DataFrame): Conjunto de datos. 
+
+    Return:
+    -------
+    transf_data(pdDataFrame): Conjunto de datos de entrada con
+                              imputación de nuevo valores.
+    ---
+    '''
+    data=data.copy()
+
+    #Rellenar los datos NA.
     for col in data.columns:
         if((data[col].dtype == 'float64') or (data[col].dtype == 'int64')):
             data[col].fillna(data[col].mean(), inplace=True)
         else:
-            data[col].fillna(data[col].mode()[0], inplace=True)
+             data[col].fillna(data[col].mode()[0], inplace=True)
+
     return data
+
     
 
     
