@@ -1,9 +1,10 @@
 # Tranformando código sucio a código limpio
 Parte importante del trabajo de un *data scientist* es desarrollar código para la solución de diversos problemas de manera automática.
-
 En este repositorio se presenta la transformación de un *código sucio* a *código limpio* siguiendo algunos pasos detallados [aquí](https://radiant-biscotti-3f9910.netlify.app/04-codigo_limpio.html#escribir-documentaci%C3%B3n).
 
 Los archivos en del *codigo-sucio* pretenden resolver el problema de [prediccion de precios de casas](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques) de Kaggle.
+
+Para consultar este repositorio en GitHub, dirigete [aquí](https://github.com/David-Damian/buenas_practicas_codigo).
 
 ## Objetivo
 Como primer ejercicio y aplicación de los consejos sugeridos, se busca realizar el **mismo** proceso descrito en `./codigo-sucio/house_prices.ipynb` mediante la modularización de algunas funciones, inclusión de *loops* y otras estrategias de modo que el nuevo codigo sea más **legible, sencillo** y **conciso**.
