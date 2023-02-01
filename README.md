@@ -1,11 +1,14 @@
 # Tranformando código sucio a código limpio
 Parte importante del trabajo de un *data scientist* es desarrollar código para la solución de diversos problemas de manera automática.
+
 En este repositorio se presenta la transformación de un *código sucio* a *código limpio* siguiendo algunos pasos detallados [aquí](https://radiant-biscotti-3f9910.netlify.app/04-codigo_limpio.html#escribir-documentaci%C3%B3n).
 
-Se puede verificar que todos los scripts con el formato `.py` cumplen con la convención de [PEP8](https://peps.python.org/pep-0008/#block-comments) mediante el uso de [flake8](https://flake8.pycqa.org/en/latest/).
+Los archivos en del *codigo-sucio* pretenden resolver el problema de [prediccion de precios de casas](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques) de Kaggle.
 
 ## Objetivo
 Como primer ejercicio y aplicación de los consejos sugeridos, se busca realizar el **mismo** proceso descrito en `./codigo-sucio/house_prices.ipynb` mediante la modularización de algunas funciones, inclusión de *loops* y otras estrategias de modo que el nuevo codigo sea más **legible, sencillo** y **conciso**.
+
+Los nuevos archivos deben seguir la convención de [PEP8](https://peps.python.org/pep-0008/#block-comments) mediante el uso de [flake8](https://flake8.pycqa.org/en/latest/).
 
 ## Estructura del repositorio
 Los directorios han sido marcados en negritas y
