@@ -30,7 +30,7 @@ Los directorios han sido marcados en negritas y
 │         ....├── visualization.py  *Script para generare graficas del EDA.* <br />
 │         ....└── ordinal_dict.json *Script para generare graficas del EDA.* <br />
 │   ├── **figures**                *Almacenar graficas del EDA.* <br />
-│   ├── **notebooks**              *Jupyter notebooks.* <br />
+│   ├── **notebooks**              *Jupyter notebooks con algunos intentos de modularizar el codigo base.* <br />
 │   ├── config.yaml *Archivo de configuracion para algunos scripts* <br />
 │   ├──main_program.py         *Make this project python3 main_program.py* <br />
 ├── **codigo-sucio**            *Directorio con datos y jupyternotebook a corregir*
