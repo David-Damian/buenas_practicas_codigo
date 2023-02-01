@@ -1,6 +1,5 @@
 """ Paquete de limpieza de datos.
-Este script le permite al usuario hacer la carga y limpieza 
-del conjunto de validación y prueba.
+Este script le permite al usuario hacer la carga y limpieza del conjunto de validación y prueba.
 
 Este archivo puede importarse como modulo y contiene las siguientes funciones:
 
@@ -16,17 +15,16 @@ import pandas as pd
 def cargar_datos():
     """
     Carga de datos de entrenamiento y validación.
-        
+    ---------------------------------------------
     Return:
     --------
-    Dos data frames. 
-    
+    Dos data frames:
     train_data (pd.DataFrame): Conjunto de datos de entrenamiento.
     test_data (pd.DataFrame): Conjunto de datos de prueba.
     """
 
     # Abrir yaml para obtener ruta de los datos.
-    with open("../config.yaml", "r") as file:
+    with open("../config.yaml", encoding="utf-8") as file:
         config = yaml.safe_load(file)
 
     # Almacenar onjunto de entrenamiento como dataframe
@@ -34,7 +32,6 @@ def cargar_datos():
 
     # Alamacenar conjunto de prueba como dataframe
     test_data = pd.read_csv(config['data']['TEST_PATH'])
-    
     return train_data, test_data
 
 def fill_categorical_na(data, vars_incompletas, valor_nuevo):
@@ -44,10 +41,9 @@ def fill_categorical_na(data, vars_incompletas, valor_nuevo):
 
     Args:
     -----
-
     vars_incompletas(List) :    Lista de variables con valores NA.
     valor_nuevo: Valor que actualiza el dato con NA.
-
+    --------------------------------------------------------------
     Return:
     -------
     transf_data(pdDataFrame): Conjunto de datos de entrada con
@@ -58,8 +54,8 @@ def fill_categorical_na(data, vars_incompletas, valor_nuevo):
     data = data.copy()
 
     # Rellenar los datos NA con 'valor_nuevo'.
-    for var in vars_incompletas: data[var].fillna(valor_nuevo, inplace=True)
-
+    for var in vars_incompletas:
+        data[var].fillna(valor_nuevo, inplace=True)
     return data
 
 def fill_num_na(data):
@@ -70,26 +66,19 @@ def fill_num_na(data):
 
     Args:
     -----
-    data(pd.DataFrame): Conjunto de datos. 
-
+    data(pd.DataFrame): Conjunto de datos
+    ----------------------------------------------------------
     Return:
     -------
     transf_data(pdDataFrame): Conjunto de datos de entrada con
                               imputación de nuevo valores.
-    ---
     '''
     # Copia de los datos de entrada
     data = data.copy()
 
     # Rellenar los datos NA.
     for col in data.columns:
-        if((data[col].dtype == 'float64') or (data[col].dtype == 'int64')):
+        if data[col].dtype in ('float64', 'int64'):
             data[col].fillna(data[col].mean(), inplace=True)
-        else:
-             data[col].fillna(data[col].mode()[0], inplace=True)
-
+        else: data[col].fillna(data[col].mode()[0], inplace=True)
     return data
-
-    
-
-    
