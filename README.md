@@ -43,7 +43,7 @@ Los directorios han sido marcados en negritas y
 ## Ejecución
 - Clona este repositorio
 - En la línea de comandos, posicionate en la ruta donde esta almacenado este repositorio.
-- Dirigete al directorio `codigo_limpio` ejecutando el comando `cd ./codigo_limpio/`.
+- Dirigete al directorio `codigo_limpio` ejecutando el comando `cd ./buenas_practicas_codigo/codigo-limpio/`.
 - Ejecuta el el archivo `main_program.py` mediante el comando `python3 main_program.py`.
 
 ## Referencias
