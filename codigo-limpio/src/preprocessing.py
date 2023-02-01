@@ -1,34 +1,49 @@
+""" Paquete de preprocesamiento de datos.
+Este script le permite al usuario hacer un procesamiento de los datos
+de entrenamiento y prueba predefinido.
+Al modificar este codigo, otro preprocesamiento puede ser especificado.
+
+Este archivo puede importarse como modulo y contiene las siguientes funciones:
+
+    * ordinal_encoding: Codificación de variables ordinales en
+                        ciertas categorias predefinidas.
+    * codificar_categoricas: Codificacion de valores en vars. categoricas
+                             a numericas.
+    * ingenieria_variables: Transformacion de algunas variables.
 """
-describir
-"""
+import json
 from sklearn.preprocessing import OrdinalEncoder, LabelEncoder
 
-def codificar_ordinales(data,var,categorias):
+
+def ordinal_encoding(data):
     """
-    Proceso de codificar un conjunto de variables ordinales, es decir
-    en donde importa el orden, que tienen las mismas categorías.
+    Tranforma ciertas variables dadas categorias específifcas.
+    Las variables y categorias se especifican en el archivo JSON
+    ordinal_dict.json.
 
     Args:
-    ----
-    data (pd.DataFrame): Conjunto de datos que se transformará.
-    var (List): Lista de variables categóricas.
-    categorias(List): Lista de categorías en común.
+    -----
+    data (pd.DataFrame): Datos a transformar.
 
     Return:
-    ------
-    data_coded(pd.DataFrame): Conjunto de datos con nuevas variables
-                              despues de la codificacion.
+    -------
+    data_coded (pd.DataFrame): Datos transformados.
     """
-    data_coded = data.copy()
-    for vari in var:
-        for category in categorias:
-            encoder_ordinal = OrdinalEncoder(categories=categorias)
-            data_coded[vari] = encoder_ordinal.fit_transform(data[[category]])
+    # Abrir JSON
+
+    with open('src/ordinal_dict.json', encoding='utf-8') as codigos_json:
+        codes = json.load(codigos_json)
+        # Transformar datos
+        data_coded = data.copy()
+        for var, categories in codes.items():
+            ordinal_encoder = OrdinalEncoder(categories=[categories])
+            data_coded[var] = ordinal_encoder.fit_transform(data[[var]])
+        codigos_json.close()
 
     return data_coded
 
 
-def codificar_categoricas(data,var):
+def codificar_categoricas(data, cat_vars):
     """
     Proceso de codificar un conjunto de variables categoricas.
 
@@ -45,7 +60,7 @@ def codificar_categoricas(data,var):
 
     data_coded = data.copy()
     label_encoder = LabelEncoder()
-    for vari in var:
+    for vari in cat_vars:
         data_coded[vari] = label_encoder.fit_transform(data[vari])
     return data_coded
 
