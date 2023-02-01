@@ -1,0 +1,19 @@
+{
+    "BsmtQual": ["No", "Po", "Fa", "TA", "Gd", "Ex"],
+    "BsmtCond": ["No", "Po", "Fa", "TA", "Gd", "Ex"],
+    "ExterQual": ["Po", "Fa", "TA", "Gd", "Ex"],
+    "ExterCond": ["Po", "Fa", "TA", "Gd", "Ex"],
+    "KitchenQual": ["Po", "Fa", "TA", "Gd", "Ex"],
+    "PavedDrive": ["N", "P", "Y"],
+    "Electrical": ["Mix", "FuseP", "FuseF", "FuseA", "SBrkr"],
+    "BsmtFinType1": ["No", "Unf", "LwQ", "Rec", "BLQ", "ALQ", "GLQ"],
+    "BsmtFinType2": ["No", "Unf", "LwQ", "Rec", "BLQ", "ALQ", "GLQ"],
+    "Utilities": ["ELO", "NoSeWa", "NoSewr", "AllPub"],
+    "MSZoning": ["C (all)", "RH", "RM", "RL", "FV"],
+    "Foundation": ["Slab", "BrkTil", "Stone", "CBlock", "Wood", "PConc"],
+    "Neighborhood": ["MeadowV", "IDOTRR", "BrDale", "Edwards", "BrkSide", "OldTown", "NAmes", "Sawyer", "Mitchel", "NPkVill", "SWISU", "Blueste", "SawyerW", "NWAmes", "Gilbert", "Blmngtn", "ClearCr", "Crawfor", "CollgCr", "Veenker", "Timber", "Somerst", "NoRidge", "StoneBr", "NridgHt"],
+    "MasVnrType": ["None", "BrkCmn", "BrkFace", "Stone"],
+    "SaleCondition": ["AdjLand", "Abnorml","Alloca", "Family", "Normal", "Partial"],
+    "RoofStyle": ["Gambrel", "Gable","Hip", "Mansard", "Flat", "Shed"],
+    "RoofMatl": ["ClyTile", "CompShg", "Roll","Metal", "Tar&Grv","Membran", "WdShake", "WdShngl"]
+}
