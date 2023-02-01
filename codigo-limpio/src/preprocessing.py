@@ -1,38 +1,59 @@
 """
 describir
 """
-from sklearn.preprocessing import OrdinalEncoder
+from sklearn.preprocessing import OrdinalEncoder, LabelEncoder
 
-def codificar_categoricas(data, vars, categorias):
+def codificar_ordinales(data,var,categorias):
     """
-    Proceso de one-hot-encoding para un conjunto de variables categóricas
-    que tienen las mismas categorías.
+    Proceso de codificar un conjunto de variables ordinales, es decir
+    en donde importa el orden, que tienen las mismas categorías.
 
     Args:
     ----
     data (pd.DataFrame): Conjunto de datos que se transformará.
-    vars (List): Lista de variables categóricas.
+    var (List): Lista de variables categóricas.
     categorias(List): Lista de categorías en común.
 
     Return:
     ------
     data_coded(pd.DataFrame): Conjunto de datos con nuevas variables
-                              despues del one-hot-encoding
+                              despues de la codificacion.
     """
-    data = data.copy() 
-    for var in vars:
+    data_coded = data.copy()
+    for vari in var:
         for category in categorias:
-            OE = OrdinalEncoder(categories=categorias)
-            data[var] = OE.fit_transform(data[[category]])
-
-    data_coded = data
+            encoder_ordinal = OrdinalEncoder(categories=categorias)
+            data_coded[vari] = encoder_ordinal.fit_transform(data[[category]])
 
     return data_coded
+
+
+def codificar_categoricas(data,var):
+    """
+    Proceso de codificar un conjunto de variables categoricas.
+
+    Args:
+    ----
+    data (pd.DataFrame): Conjunto de datos que se transformará.
+    var (List): Lista de variables categóricas.
+
+    Return:
+    ------
+    data_coded(pd.DataFrame): Conjunto de datos con nuevas variables
+                              despues de la codificación.
+    """
+
+    data_coded = data.copy()
+    label_encoder = LabelEncoder()
+    for vari in var:
+        data_coded[vari] = label_encoder.fit_transform(data[vari])
+    return data_coded
+
 
 def ingenieria_variables(data):
     """
     Aplica ingeniería de variables específica, predefinada por el
-    autor, a un conjunto de datos (train/test)
+    autor/usuario, a un conjunto de datos (train/test)
 
     Args:
     -----
@@ -46,24 +67,23 @@ def ingenieria_variables(data):
     # Multiplicar algunas columnas
     data_transf = data.copy()
 
-    data_transf['BsmtRating'] = (data['BsmtCond'] 
-                                      * data['BsmtQual'])
-    data_transf['ExterRating'] = (data['ExterCond'] 
-                                       * data['ExterQual'])
-    data_transf['BsmtFinTypeRating'] = (data['BsmtFinType1'] 
+    data_transf['BsmtRating'] = (data['BsmtCond']
+                                 * data['BsmtQual'])
+    data_transf['ExterRating'] = (data['ExterCond']
+                                  * data['ExterQual'])
+    data_transf['BsmtFinTypeRating'] = (data['BsmtFinType1']
                                         * data['BsmtFinType2'])
-    
-    # Sumar algunas columnas
-    data_transf['BsmtBath'] = (train_data['BsmtFullBath'] 
-                               +train_data['BsmtHalfBath'])
 
-    data_transf['Bath'] = (train_data['FullBath'] 
-                           + train_data['HalfBath'])
-                
-    data_transf['PorchArea'] = (train_data['OpenPorchSF'] 
-                                + train_data['EnclosedPorch'] 
-                                + train_data['3SsnPorch'] 
-                                + train_data['ScreenPorch'])
+    # Sumar algunas columnas
+    data_transf['BsmtBath'] = (data['BsmtFullBath']
+                               + data['BsmtHalfBath'])
+
+    data_transf['Bath'] = (data['FullBath']
+                           + data['HalfBath'])
+
+    data_transf['PorchArea'] = (data['OpenPorchSF']
+                                + data['EnclosedPorch']
+                                + data['3SsnPorch']
+                                + data['ScreenPorch'])
 
     return data_transf
-
