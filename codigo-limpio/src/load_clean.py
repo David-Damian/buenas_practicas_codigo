@@ -1,5 +1,6 @@
 """ Paquete de limpieza de datos.
-Este script le permite al usuario hacer la carga y limpieza del conjunto de validación y prueba.
+Este script le permite al usuario hacer la carga y limpieza del conjunto
+de validación y prueba.
 
 Este archivo puede importarse como modulo y contiene las siguientes funciones:
 
@@ -11,7 +12,8 @@ Este archivo puede importarse como modulo y contiene las siguientes funciones:
 import yaml
 import pandas as pd
 
-#Hacer la carga de datos
+
+# Hacer la carga de datos
 def cargar_datos():
     """
     Carga de datos de entrenamiento y validación.
@@ -24,7 +26,7 @@ def cargar_datos():
     """
 
     # Abrir yaml para obtener ruta de los datos.
-    with open("../config.yaml", encoding="utf-8") as file:
+    with open("./config.yaml", encoding="utf-8") as file:
         config = yaml.safe_load(file)
 
     # Almacenar onjunto de entrenamiento como dataframe
@@ -33,6 +35,7 @@ def cargar_datos():
     # Alamacenar conjunto de prueba como dataframe
     test_data = pd.read_csv(config['data']['TEST_PATH'])
     return train_data, test_data
+
 
 def fill_categorical_na(data, vars_incompletas, valor_nuevo):
     '''
@@ -58,6 +61,7 @@ def fill_categorical_na(data, vars_incompletas, valor_nuevo):
         data[var].fillna(valor_nuevo, inplace=True)
     return data
 
+
 def fill_num_na(data):
     '''
     Rellena los datos faltantes para variables numéricas.
@@ -80,5 +84,6 @@ def fill_num_na(data):
     for col in data.columns:
         if data[col].dtype in ('float64', 'int64'):
             data[col].fillna(data[col].mean(), inplace=True)
-        else: data[col].fillna(data[col].mode()[0], inplace=True)
+        else:
+            data[col].fillna(data[col].mode()[0], inplace=True)
     return data
