@@ -4,9 +4,14 @@ main:
   steps: all
 
 data:
-  TRAIN_PATH: "../data/raw/train.csv"
-  TEST_PATH: "../data/raw/test.csv"
+  TRAIN_PATH: "./data/raw/train.csv"
+  TEST_PATH: "./data/raw/test.csv"
+  TRAIN_CLEAN: "./data/clean/"
+  TEST_CLEAN: "./data/clean/"  
+  TRAIN_PROCESSED: "./data/processed/"
+  TEST_PROCESSED: "./data/processed/"
+  PREDICCIONES: "./data/predicciones/"
 
 visualization:
-  FIGURES_PATH: "../figures/"
+  FIGURES_PATH: "./figures/"
 
