@@ -6,3 +6,8 @@ A partir del *notebook* en el directorio `codigo-sucio` se buscará implementar 
 
 ## Referencias
 * [Accesar a cada elemento de un diccionario en Pyhthon](https://stackoverflow.com/questions/12353288/getting-values-from-json-using-python)
+
+## Ejecución
+- Clona este repositorio
+- En la línea de comandos, posicionate en el directorio donde almacenaste el respositorio.
+- Ejecuta el el archivo `main_program.py` mediante el comando `python3 main_program.py`.
