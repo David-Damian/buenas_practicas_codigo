@@ -8,26 +8,27 @@ Se puede verificar que todos los scripts con el formato `.py` cumplen con la con
 Como primer ejercicio y aplicación de los consejos sugeridos, se busca realizar el **mismo** proceso descrito en `./codigo-sucio/house_prices.ipynb` mediante la modularización de algunas funciones, inclusión de *loops* y otras estrategias de modo que el nuevo codigo sea más **legible, sencillo** y **conciso**.
 
 ## Estructura del repositorio
-├── LICENSE
-├── README.md          <- Descripción del proyecto.
-├── codigo_limpio
-|   ├── data
-│       ├── clean             <- Carpeta para almacenar datos limpios.
-│       ├── predicciones      <- Carpeta para almacenar predicciones.
-│       ├── processed         <- Datos procesados para ingestar al modelo de ML.
-│       └── raw               <- Datos en bruto, sin procesar.
-|   ├── src                   <- Source code for use in this project.
-│       ├── __init__.py       <- Makes src a Python module
-│       ├── load_clean.py     <- Scripts to download or generate data
-│       ├── preprocessing.py  <- Script de preprocesamiento de datos.
-|       ├── visualization.py  <- Script para generare graficas del EDA.
-|       └── ordinal_dict.json <- Script para generare graficas del EDA.
-|   ├── figures               <- Almacenar graficas del EDA.
-│   ├── notebooks             <- Jupyter notebooks.
-│   ├── config.yaml
-|   ├──main_program.py        <- Make this project python3 main_program.py
-│
-├── codigo-sucio
+<br />
+├── LICENSE<br />
+├── README.md          <- Descripción del proyecto.<br />
+├── codigo_limpio <br />
+│     └── data <br />
+│             ├─ clean             <- Carpeta para almacenar datos limpios. <br />
+│             ├─ predicciones      <- Carpeta para almacenar predicciones. <br />
+│             ├─ processed         <- Datos procesados para ingestar al modelo de ML. <br />
+│             └─ raw               <- Datos en bruto, sin procesar. <br />
+│      └── src                    <- Source code for use in this project. <br />
+│             ├── __init__.py        <- Makes src a Python module. <br />
+│             ├── load_clean.py      <- Scripts to download or generate data. <br />
+│             ├── preprocessing.py   <- Script de preprocesamiento de datos. <br />
+│             ├── visualization.py   <- Script para generare graficas del EDA. <br />
+│             └── ordinal_dict.json  <- Script para generare graficas del EDA. <br />
+│   ├── figures                <- Almacenar graficas del EDA. <br />
+│   ├── notebooks              <- Jupyter notebooks. <br />
+│   ├── config.yaml <br />
+│   ├──main_program.py         <- Make this project python3 main_program.py <br />
+├── codigo-sucio               <- Directorio con datos y jupyternotebook a corregir
+<br />
 
 ## Prerequisitos
 * `Git`: Para clonar este repositorio
