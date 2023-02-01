@@ -14,24 +14,22 @@ Los directorios han sido marcados en negritas y
 ├── LICENSE<br />
 ├── **README.md**          <- *Descripción del proyecto.* <br />
 ├── **codigo_limpio** <br />
-.<br />
 │     └── **data** <br />
-│           ├─ clean             <- *Carpeta para almacenar datos limpios.* <br />
-│           ├─ predicciones      <- *Carpeta para almacenar predicciones.* <br />
-│           ├─ processed         <- *Datos procesados para ingestar al modelo de ML.* <br />
-│           └─ raw               <- *Datos en bruto, sin procesar.* <br />
-│      └── **src**                    <- *Source code for use in this project.* <br />
-.<br />
-│            ├── __init__.py        <- *Makes src a Python module.* <br />
-│            ├── load_clean.py      <- *Scripts to download or generate data.* <br />
-│            ├── preprocessing.py   <- *Script de preprocesamiento de datos.* <br />
-│            ├── visualization.py   <- *Script para generare graficas del EDA.* <br />
-│            └── ordinal_dict.json  <- *Script para generare graficas del EDA.* <br />
-│   ├── **figures**                <- *Almacenar graficas del EDA.* <br />
-│   ├── **notebooks**              <- *Jupyter notebooks.* <br />
-│   ├── config.yaml <br />
-│   ├──main_program.py         <- *Make this project python3 main_program.py* <br />
-├── **codigo-sucio**               <- *Directorio con datos y jupyternotebook a corregir*
+│          ....├─ clean             *Carpeta para almacenar datos limpios.* <br />
+│          ....├─ predicciones      *Carpeta para almacenar predicciones.* <br />
+│          ....├─ processed         *Datos procesados para ingestar al modelo de ML.* <br />
+│          ....└─ raw               *Datos en bruto, sin procesar.* <br />
+│      └── **src**                  *Source code for use in this project.* <br />
+│         ....├── __init__.py       *Makes src a Python module.* <br />
+│         ....├── load_clean.py     *Scripts to download or generate data.* <br />
+│         ....├── preprocessing.py  *Script de preprocesamiento de datos.* <br />
+│         ....├── visualization.py  *Script para generare graficas del EDA.* <br />
+│         ....└── ordinal_dict.json *Script para generare graficas del EDA.* <br />
+│   ├── **figures**                *Almacenar graficas del EDA.* <br />
+│   ├── **notebooks**              *Jupyter notebooks.* <br />
+│   ├── config.yaml *Archivo de configuracion para algunos scripts* <br />
+│   ├──main_program.py         *Make this project python3 main_program.py* <br />
+├── **codigo-sucio**            *Directorio con datos y jupyternotebook a corregir*
 <br />
 
 ## Prerequisitos
