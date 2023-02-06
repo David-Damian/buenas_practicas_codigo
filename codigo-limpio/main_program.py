@@ -134,9 +134,19 @@ def pipeline_prediccion(paths_to_save):
 
 
 if __name__ == "__main__":
-    # Ejecutar script del EDA
-    vs.eda()
-
-    # Ejecutar pipeline de prediccion
-    pipeline_prediccion(paths_to_save=[clean_path,
-                                       train_proc_path, test_proc_path])
+    # Comenzamos ejecutando el EDA
+    try:
+        print("EDA para el conjunto de entrenamiento comenzado...\n")
+        # Ejecutar script del EDA
+        vs.eda()
+        print("Tarea concluida. Revisa las graficas en el path ./figures/\n")
+    # Si falla, ya hay exception handlers dentro de cada funcion
+    except:
+        print("\n")
+    try:
+        print("Pipeline comenzado...\n")
+        # Ejecutar pipeline de prediccion
+        pipeline_prediccion(paths_to_save=[clean_path,
+                                            train_proc_path, test_proc_path])    
+    except:    
+        print("El pipeline no se terminó.")
