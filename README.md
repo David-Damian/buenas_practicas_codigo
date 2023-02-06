@@ -1,5 +1,5 @@
 # Tranformando código sucio a código limpio
-Parte importante del trabajo de un *data scientist* es desarrollar código para la solución de diversos problemas de manera automática.
+Parte importante del trabajo de un *data scientist* es desarrollar y compartir código cuando se resuelven diversos problemas.
 En este repositorio se presenta la transformación de un *código sucio* a *código limpio* siguiendo algunos pasos detallados [aquí](https://radiant-biscotti-3f9910.netlify.app/04-codigo_limpio.html#escribir-documentaci%C3%B3n).
 
 Los archivos en del *codigo-sucio* pretenden resolver el problema de [prediccion de precios de casas](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques) de Kaggle.
@@ -9,10 +9,12 @@ Para consultar este repositorio en GitHub, dirigete [aquí](https://github.com/D
 ## Objetivo
 Como primer ejercicio y aplicación de los consejos sugeridos, se busca realizar el **mismo** proceso descrito en `./codigo-sucio/house_prices.ipynb` mediante la modularización de algunas funciones, inclusión de *loops* y otras estrategias de modo que el nuevo codigo sea más **legible, sencillo** y **conciso**.
 
-Los nuevos archivos deben seguir la convención de [PEP8](https://peps.python.org/pep-0008/#block-comments) mediante el uso de [flake8](https://flake8.pycqa.org/en/latest/).
+Los nuevos archivos deben seguir la convención de [PEP8](https://peps.python.org/pep-0008/#block-comments). 
+
+Se puede verifricar de manera automática que el código sigue dicha conveción o bien alinearse a la misma, mediante [flake8](https://flake8.pycqa.org/en/latest/).
 
 ## Estructura del repositorio
-Los directorios han sido marcados en negritas y
+Los directorios han sido marcados en negritas y en cursiva, la descripcion del archivo o directorio.
 
 .<br />
 ├── LICENSE<br />
@@ -43,13 +45,13 @@ Los directorios han sido marcados en negritas y
 
 ## Ejecución
 - Clona este repositorio
-- En la línea de comandos, posicionate en la ruta donde esta almacenado este repositorio.
-- Dirigete al directorio `codigo_limpio` ejecutando el comando `cd ./buenas_practicas_codigo/codigo-limpio/`.
+- En la línea de comandos, posiciónate en la ruta donde esta almacenado este repositorio.
+- Dirígete al directorio `codigo_limpio` ejecutando el comando `cd ./buenas_practicas_codigo/codigo-limpio/`.
 - Ejecuta el el archivo `main_program.py` mediante el comando `python3 main_program.py`.
 
 ## Referencias
 * [flake8](https://flake8.pycqa.org/en/latest/)
 * [pylint](https://docs.pylint.org/)
-* [Accesar a cada elemento de un diccionario en Pyhthon](https://stackoverflow.com/questions/12353288/getting-values-from-json-using-python)
+* [Accesar a cada elemento de un diccionario en Python](https://stackoverflow.com/questions/12353288/getting-values-from-json-using-python)
 
 
