@@ -13,11 +13,16 @@ from src import load_clean as cln
 def eda():
     """
     Función para hacer un mini EDA.
-    Obtiene una grafica un heatmap de variables nulas y
+    Obtiene una grafica tipo heatmap de variables nulas y
     un violinplot de algunas variables.
     """
-    # Cargar conjunto de entrenamiento
-    train_data = cln.cargar_datos()[0]
+    try:
+        with open("./config.yaml", encoding="utf-8") as file:
+            config = yaml.safe_load(file)
+        # Cargar conjunto de entrenamiento
+        train_data = cln.cargar_datos()[0]
+    except:
+        print("EL EDA no ha podido terminar")
 
     # Heat Map
     figura, ejes = plt.subplots(figsize=(25, 10))

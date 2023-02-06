@@ -24,17 +24,24 @@ def cargar_datos():
     train_data (pd.DataFrame): Conjunto de datos de entrenamiento.
     test_data (pd.DataFrame): Conjunto de datos de prueba.
     """
+    try:
+        # Abrir yaml para obtener ruta de los datos.
+        with open("./config.yaml", encoding="utf-8") as file:
+            config = yaml.safe_load(file)
 
-    # Abrir yaml para obtener ruta de los datos.
-    with open("./config.yaml", encoding="utf-8") as file:
-        config = yaml.safe_load(file)
+        # Almacenar onjunto de entrenamiento como dataframe
+        train_data = pd.read_csv(config['data']['TRAIN_PATH'])
 
-    # Almacenar onjunto de entrenamiento como dataframe
-    train_data = pd.read_csv(config['data']['TRAIN_PATH'])
+        # Alamacenar conjunto de prueba como dataframe
+        test_data = pd.read_csv(config['data']['TEST_PATH'])
+        return train_data, test_data
 
-    # Alamacenar conjunto de prueba como dataframe
-    test_data = pd.read_csv(config['data']['TEST_PATH'])
-    return train_data, test_data
+    except FileNotFoundError:
+        print("No hemos podido hacer la carga de datos")
+        print(f"Los datos de entrenamiento o test no están en este path: data/raw")
+        print(f"Busca en otro lugar y colócalos en ese path, por lo pronto no podemos proceder.\n")
+
+
 
 
 def fill_categorical_na(data, vars_incompletas, valor_nuevo):
