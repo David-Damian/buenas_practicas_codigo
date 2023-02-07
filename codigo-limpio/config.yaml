@@ -13,5 +13,5 @@ data:
   PREDICCIONES: "./data/predicciones/"
 
 visualization:
-  FIGURES_PATH: "./figures/"
+  FIGURES_PATH: "./figures/"  # Ruta para almacenar datos
 
