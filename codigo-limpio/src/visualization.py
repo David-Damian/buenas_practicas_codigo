@@ -16,13 +16,10 @@ def eda():
     Obtiene una grafica tipo heatmap de variables nulas y
     un violinplot de algunas variables.
     """
-    try:
-        with open("./config.yaml", encoding="utf-8") as file:
-            config = yaml.safe_load(file)
-        # Cargar conjunto de entrenamiento
-        train_data = cln.cargar_datos()[0]
-    except:
-        print("EL EDA no ha podido terminar")
+    with open("./config.yaml", encoding="utf-8") as file:
+        config = yaml.safe_load(file)
+    # Cargar conjunto de entrenamiento
+    train_data = cln.cargar_datos()[0]
 
     # Heat Map
     figura, ejes = plt.subplots(figsize=(25, 10))
@@ -43,22 +40,25 @@ def eda():
                              y=train_data["SalePrice"],
                              palette='deep',
                              ax=ejes)
-    figure2 = violin.get_figure()       # guarrdamos la grafica en una variable
+    figure2 = violin.get_figure()       # guardar la grafica en una variable
+
     # Almacenar las graficas.
+    # Verificar que existe el path donde se almacenaran
+    try:
+        # Obtener ruta donde se almacenaran las graficas
+        with open("./config.yaml", encoding="utf-8") as file:
+            config = yaml.safe_load(file)
+        fig_path = config['visualization']['FIGURES_PATH']
 
-    # Abrir yaml
-    with open("./config.yaml", encoding="utf-8") as file:
-        config = yaml.safe_load(file)
+        nombre_figuras = ["heat_map", "violin_plot"]
 
-    # Obtener ruta donde se alamcenaran las graficas
-    fig_path = config['visualization']['FIGURES_PATH']
+        # Guardar Heatmap
+        save_heatmap = f"{fig_path}{nombre_figuras[0]}"
+        figure1.savefig(save_heatmap, dpi=400)
 
-    nombre_figuras = ["heat_map", "violin_plot"]
+        # Guardar violin plots
+        save_violinplot = f"{fig_path}{nombre_figuras[1]}"
+        figure2.savefig(save_violinplot, dpi=400)
+    except:
+        pass
 
-    # Guardar Heatmap
-    save_heatmap = f"{fig_path}{nombre_figuras[0]}"
-    figure1.savefig(save_heatmap, dpi=400)
-
-    # Guardar violin plots
-    save_violinplot = f"{fig_path}{nombre_figuras[1]}"
-    figure2.savefig(save_violinplot, dpi=400)
