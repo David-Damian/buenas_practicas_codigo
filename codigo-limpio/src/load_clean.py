@@ -54,12 +54,15 @@ def fill_categorical_na(data, vars_incompletas, valor_nuevo):
                               imputación de nuevo valores.
     ---
     '''
-    # Copia de los datos de entrada
-    data = data.copy()
-    # Rellenar los datos NA con 'valor_nuevo'.
-    for var in vars_incompletas:
-        data[var].fillna(valor_nuevo, inplace=True)
-    return data
+    try:
+        # Copia de los datos de entrada
+        data = data.copy()
+        # Rellenar los datos NA con 'valor_nuevo'.
+        for var in vars_incompletas:
+            data[var].fillna(valor_nuevo, inplace=True)
+        return data
+    except:
+        pass
 
 
 
