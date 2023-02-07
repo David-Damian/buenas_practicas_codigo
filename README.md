@@ -53,5 +53,5 @@ Los directorios han sido marcados en negritas y en cursiva, la descripcion del a
 * [flake8](https://flake8.pycqa.org/en/latest/)
 * [pylint](https://docs.pylint.org/)
 * [Accesar a cada elemento de un diccionario en Python](https://stackoverflow.com/questions/12353288/getting-values-from-json-using-python)
-
+* [Cómo verificar que un pd.DataFrame no está vacío](https://stackoverflow.com/questions/19828822/how-to-check-whether-a-pandas-dataframe-is-empty)
 
