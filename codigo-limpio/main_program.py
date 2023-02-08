@@ -7,11 +7,11 @@ es decir, un pipeline para predecir.
 
 
 """
+import logging
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import cross_val_score
 import yaml
 import pandas as pd
-import logging
 from src import load_clean as cln
 from src import preprocessing as prc
 from src import visualization as vs
@@ -63,42 +63,49 @@ def pipeline_prediccion(paths_to_save):
     """
     # Cargar conjunto de entrenamiento y prueba
     train_set, test_set = cln.cargar_datos()[0], cln.cargar_datos()[1]
-    
+
     # Deshacerse de variables que no se incluiran en el modelo
     try:
         #  Mensaje de inicializacion de proceso de droppear
-        logging.info("Algunas columnas del conjunto de train y test desaparecerán...")
+        logging.info("Algunas columnas del conjunto de "
+                     "train y test desaparecerán...")
         train_set.drop(VARS_TO_DROP, axis=1, inplace=True)
         test_set.drop(VARS_TO_DROP, axis=1, inplace=True)
         logging.info("Tarea concluida con ÉXITO.")
     except KeyError:
         # Mandar mensaje tipo ERROR al results.log
-        logging.error("Verifica que las variables por droppear, sean columnas en el conjunto de train y test")
+        logging.error("Verifica que las variables por droppear,sean"
+                      " columnas en el conjunto de train y test")
 
     # Limpieza
     # Rellenar valores faltantes de variables categoricas
     try:
-        logging.info("Se comenzarán a imputar los valores de variables categoricas...")
+        logging.info("Se comenzarán a imputar los "
+                     "valores de variables categoricas...")
         train_filled = cln.fill_categorical_na(data=train_set,
-                                            vars_incompletas=VARS_INCOMPLETAS,
-                                            valor_nuevo="No")
+                                               vars_incompletas=VARS_INCOMPLETAS,
+                                               valor_nuevo="No")
 
         test_filled = cln.fill_categorical_na(data=test_set,
-                                            vars_incompletas=VARS_INCOMPLETAS,
-                                            valor_nuevo="No")
+                                              vars_incompletas=VARS_INCOMPLETAS,
+                                              valor_nuevo="No")
         logging.info("Tarea concluida con ÉXITO.")
-    # Si no se llenaron fue porque VARS_INCOMPLETAS tiene un nombre que no aparece en las columnas de los sets.
+    # Si no se llenaron fue porque VARS_INCOMPLETAS tiene
+    # un nombre que no aparece en las columnas de los sets.
     except KeyError:
-        logging.error("No se han podido rellenar variables categoricas. Verificar que las variables incompletas sean columnas del conjunto de entrenamiento y test")
-    
+        logging.error("No se han podido rellenar variables categoricas."
+                      "Verificar que las variables incompletas sean "
+                      "columnas del conjunto de "
+                      "entrenamiento y test")
+
     # Rellenar valores faltantes de variables numericas
     try:
         train_clean = cln.fill_num_na(data=train_filled)
         test_clean = cln.fill_num_na(data=test_filled)
     # Parar. Error debido a que el try anterior no se ejecutó.
     except UnboundLocalError:
-        logging.error("No se ha podido rellenar los valores de vars numericas porque las categoricas no se rellenaron.")
-
+        logging.error("No se ha podido rellenar los valores de vars"
+                      "numericas porque las categoricas no se rellenaron.")
     # Guardar datos
     train_clean.to_csv(f"{paths_to_save[0][0]}train", index=False)
     test_clean.to_csv(f"{paths_to_save[0][1]}test", index=False)
@@ -123,7 +130,7 @@ def pipeline_prediccion(paths_to_save):
     logging.info("Tarea conclcuida con ÉXITO.")
 
     # Guardar datos de entrenamiento y prueba procesados
-    logging.info("Guardando datos de trai y test procesados...")
+    logging.info("Guardando datos de train y test procesados...")
     train_proc.to_csv(f"{paths_to_save[1]}train", index=False) # Guardar datos de train
     test_proc.to_csv(f"{paths_to_save[2]}test", index=False) # Guardar datos de test
     logging.info("Tarea conclcuida con ÉXITO.")
@@ -135,7 +142,8 @@ def pipeline_prediccion(paths_to_save):
 
     # Crear objeto RandomForestRegressor
     modelo_candidato = RandomForestRegressor(max_leaf_nodes=250)
-    logging.info(f"Los hiperparámetros del modelo que esta ajustando son {modelo_candidato.get_params()}")
+    logging.info(f"Los hiperparámetros del modelo que esta ajustando "
+    f"son {modelo_candidato.get_params()}")
     # Ajustar modelo
     modelo_candidato.fit(features, target_var)
     score = cross_val_score(modelo_candidato, features, target_var, cv=10)
@@ -158,11 +166,10 @@ def pipeline_prediccion(paths_to_save):
 if __name__ == "__main__":
 
     # Inicializar logger
-    logging.basicConfig(
-    filename='./logs/results.log',
-    level=logging.INFO,
-    filemode='w',
-    format='%(filename)s - %(name)s - %(levelname)s - %(message)s')
+    logging.basicConfig(filename='./logs/results.log',
+                        level=logging.INFO,
+                        filemode='w',
+                        format='%(filename)s - %(name)s - %(levelname)s - %(message)s')
 
     # Verificar que hay datos de train y test en el directorio data/raw/
     # y que no esten vacíos. En ese caso, ejecutar el EDA.
@@ -188,18 +195,21 @@ if __name__ == "__main__":
                 raise FileNotFoundError
             # Si falla, pare y mande msj de error
             except FileNotFoundError:
-                logging.error("Las graficas no se almacenaron en figures/. Revise el archivo config.yaml y verifique que la ruta para almacenarlas exista.")
+                logging.error("Las graficas no se almacenaron en figures/."
+                              "Revise el archivo config.yaml y verifique "
+                              "que la ruta para almacenarlas exista.")
 
     except FileNotFoundError:
-        logging.error("No hay datos de entrenamiento o test en este path: data/raw. Busca en otro lugar y colócalos en ese path, por lo pronto no podemos proceder.")
-    
-    #print("Graficas comenzadas...\n")
-    #vs.eda()
-    print("Pipeline comenzado...\n")
+        logging.error("No hay datos de entrenamiento o test"
+                      " en este path: data/raw."
+                      "Busca en otro lugar y colócalos en ese path,"
+                      " por lo pronto no podemos proceder.")
+
     # Ejecutar pipeline de prediccion
-    pipeline_prediccion(paths_to_save=[clean_path,
-                                            train_proc_path, test_proc_path])
-    #try:
-            
-    #except:    
-    #    print("El pipeline no se terminó.")
+    try:
+        logging.info("Pipeline comenzado...")
+        pipeline_prediccion(paths_to_save=[clean_path,
+                                                train_proc_path, test_proc_path])
+        logging.info("Tarea concluida con ÉXITO.")
+    except:
+        logging.error("EL pipeline no se terminó.")
