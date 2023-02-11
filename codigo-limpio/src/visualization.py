@@ -4,22 +4,21 @@ para el EDA.
 Las figuras son almacendas en el directorio figures
 del directorio padre.
 """
+import logging
 from matplotlib import pyplot as plt
 import seaborn as sns
 import yaml
 from src import load_clean as cln
 
 
-def eda():
+def eda(path_train, fig_path):
     """
     Función para hacer un mini EDA.
     Obtiene una grafica tipo heatmap de variables nulas y
     un violinplot de algunas variables.
     """
-    with open("./config.yaml", encoding="utf-8") as file:
-        config = yaml.safe_load(file)
     # Cargar conjunto de entrenamiento
-    train_data = cln.cargar_datos()[0]
+    train_data = cln.cargar_datos(path_train)
 
     # Heat Map
     figura, ejes = plt.subplots(figsize=(25, 10))
@@ -45,11 +44,6 @@ def eda():
     # Almacenar las graficas.
     # Verificar que existe el path donde se almacenaran
     try:
-        # Obtener ruta donde se almacenaran las graficas
-        with open("./config.yaml", encoding="utf-8") as file:
-            config = yaml.safe_load(file)
-        fig_path = config['visualization']['FIGURES_PATH']
-
         nombre_figuras = ["heat_map", "violin_plot"]
 
         # Guardar Heatmap
@@ -59,6 +53,9 @@ def eda():
         # Guardar violin plots
         save_violinplot = f"{fig_path}{nombre_figuras[1]}"
         figure2.savefig(save_violinplot, dpi=400)
-    except:
-        pass
+    except FileNotFoundError as file_err:
+        logging.error(f"Los datos de entrenamiento no estan en {fig_path}")
+        raise file_err
+
+        
 
