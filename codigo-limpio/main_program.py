@@ -16,27 +16,16 @@ from src import load_clean as cln
 from src import preprocessing as prc
 from src import visualization as vs
 
-VARS_TO_DROP = ['Id', 'Alley', 'PoolQC', 'MiscFeature', 'Fence', 'MoSold',
-                'YrSold', 'MSSubClass', 'GarageType', 'GarageArea',
-                'GarageFinish', 'YearRemodAdd', 'LandSlope', 'BsmtUnfSF',
-                'BsmtExposure', '2ndFlrSF', 'LowQualFinSF', 'Condition1',
-                'Condition2', 'Heating', 'Exterior1st', 'Exterior2nd',
-                'HouseStyle', 'LotShape', 'LandContour', 'Functional',
-                'BsmtFinSF1', 'BsmtFinSF2', 'FireplaceQu', 'WoodDeckSF',
-                'GarageQual', 'GarageCond', 'OverallCond', 'GarageYrBlt',
-                'HeatingQC', 'LotConfig'
-                ]
-VARS_INCOMPLETAS = ['BsmtQual', 'BsmtCond', 'BsmtFinType1',
-                    'BsmtFinType1', 'BsmtFinType2']
-LABEL_ENCODING = ['Street', 'BldgType', 'SaleType', 'CentralAir']
-
-
-# Obtener ruta donde se alamcenaran los datos
-
 # Abrir yaml
 with open("./config.yaml", encoding="utf-8") as file:
     config = yaml.safe_load(file)
 
+VARS_TO_DROP = config['main']['VARS_TO_DROP']
+VARS_INCOMPLETAS = config['main']['VARS_INCOMPLETAS']
+LABEL_ENCODING = config['main']['LABEL_ENCODING']
+
+
+# Obtener ruta donde se alamcenaran los datos
 # Almacenar rutas para guardar datos limpios y procesados
 clean_path = [config['data']['TRAIN_CLEAN'], config['data']['TEST_CLEAN']]
 train_proc_path = config['data']['TRAIN_PROCESSED']
@@ -62,7 +51,8 @@ def pipeline_prediccion(paths_to_save):
 
     """
     # Cargar conjunto de entrenamiento y prueba
-    train_set, test_set = cln.cargar_datos()[0], cln.cargar_datos()[1]
+    train_set = cln.cargar_datos(config['data']['TRAIN_PATH']), 
+    test_set = cln.cargar_datos(config['data']['TEST_PATH'])
 
     # Deshacerse de variables que no se incluiran en el modelo
     try:
