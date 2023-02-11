@@ -12,28 +12,20 @@ Este archivo puede importarse como modulo y contiene las siguientes funciones:
 import yaml
 import pandas as pd
 
-
 # Hacer la carga de datos
-def cargar_datos():
+def cargar_datos(pth):
     """
-    Carga de datos de entrenamiento y validación.
+    Funcion para carga de datos.
     ---------------------------------------------
     Return:
     --------
-    Dos data frames:
-    train_data (pd.DataFrame): Conjunto de datos de entrenamiento.
-    test_data (pd.DataFrame): Conjunto de datos de prueba.
+    data (pd.DataFrame): Conjunto de datos de como dataframe.
     """
-    # Abrir yaml para obtener ruta de los datos.
-    with open("./config.yaml", encoding="utf-8") as file:
-        config = yaml.safe_load(file)
 
-    # Almacenar conjunto de entrenamiento como dataframe
-    train_data = pd.read_csv(config['data']['TRAIN_PATH'])
+    # Almacenar data como dataframe
+    data = pd.read_csv(pth)
 
-    # Alamacenar conjunto de prueba como dataframe
-    test_data = pd.read_csv(config['data']['TEST_PATH'])
-    return train_data, test_data
+    return data
 
 
 
