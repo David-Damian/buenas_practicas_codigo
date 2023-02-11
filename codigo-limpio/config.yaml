@@ -30,5 +30,6 @@ visualization:
 
 test:
   TRAIN_PATH: "../data/raw/train.csv"
+  FIGURES_PATH: "../figures/"
 
 
