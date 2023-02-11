@@ -11,7 +11,7 @@ Como primer ejercicio y aplicación de los consejos sugeridos, se busca realizar
 
 Los nuevos archivos deben seguir la convención de [PEP8](https://peps.python.org/pep-0008/#block-comments). 
 
-Se puede verifricar de manera automática que el código sigue dicha conveción o bien alinearse a la misma, mediante [flake8](https://flake8.pycqa.org/en/latest/).
+Se puede verifricar de manera automática que el código sigue dicha conveción mediante [flake8](https://flake8.pycqa.org/en/latest/).
 
 ## Estructura del repositorio
 Los directorios han sido marcados en negritas y en cursiva, la descripcion del archivo o directorio.
@@ -38,7 +38,7 @@ Los directorios han sido marcados en negritas y en cursiva, la descripcion del a
 ├── **codigo-sucio**            *Directorio con datos y jupyternotebook a corregir*
 <br />
 
-## Prerequisitos
+## Prerrequisitos
 * `Git`: Para clonar este repositorio
 * `Python 3.6` y las librerías   `scikit-learn`, `pandas`, `yaml` y `json`.
 
