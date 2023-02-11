@@ -2,6 +2,19 @@ main:
   components_repository: "https://github.com/David-Damian/buenas_practicas_codigo"
   project_name: tranformando_codigo_sucio_a_código_limpio
   steps: all
+  VARS_TO_DROP: ['Id', 'Alley', 'PoolQC', 'MiscFeature', 'Fence', 'MoSold',
+                'YrSold', 'MSSubClass', 'GarageType', 'GarageArea',
+                'GarageFinish', 'YearRemodAdd', 'LandSlope', 'BsmtUnfSF',
+                'BsmtExposure', '2ndFlrSF', 'LowQualFinSF', 'Condition1',
+                'Condition2', 'Heating', 'Exterior1st', 'Exterior2nd',
+                'HouseStyle', 'LotShape', 'LandContour', 'Functional',
+                'BsmtFinSF1', 'BsmtFinSF2', 'FireplaceQu', 'WoodDeckSF',
+                'GarageQual', 'GarageCond', 'OverallCond', 'GarageYrBlt',
+                'HeatingQC', 'LotConfig']
+  VARS_INCOMPLETAS : ['BsmtQual', 'BsmtCond', 'BsmtFinType1',
+                    'BsmtFinType1', 'BsmtFinType2']
+  LABEL_ENCODING : ['Street', 'BldgType', 'SaleType', 'CentralAir']
+
 
 data:
   TRAIN_PATH: "./data/raw/train.csv"
@@ -14,4 +27,8 @@ data:
 
 visualization:
   FIGURES_PATH: "./figures/"  # Ruta para almacenar datos
+
+test:
+  TRAIN_PATH: "../data/raw/train.csv"
+
 
