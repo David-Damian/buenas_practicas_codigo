@@ -32,10 +32,10 @@ test:
   TRAIN_PATH: "./data/raw/train.csv"
   TEST_PATH: "./data/raw/test.csv"
   FIGURES_PATH: "./tests/outputs_of_testing/visualization/"
-  TRAIN_CLEAN: "./tests/outputs_of_testing/"
-  TEST_CLEAN: "./tests/outputs_of_testing/"  
-  TRAIN_PROCESSED: "./tests/outputs_of_testing/"
-  TEST_PROCESSED: "./tests/outputs_of_testing/"
-  PREDICTIONS_PATH: "./tests/outputs_of_testing/pipeline/"
+  TRAIN_CLEAN: "./tests/outputs_of_testing/pipeline/transformed_data/"
+  TEST_CLEAN: "./tests/outputs_of_testing/pipeline/transformed_data/"  
+  TRAIN_PROCESSED: "./tests/outputs_of_testing/pipeline/transformed_data/"
+  TEST_PROCESSED: "./tests/outputs_of_testing/pipeline/transformed_data/"
+  PREDICTIONS_PATH: "./tests/outputs_of_testing/pipeline/predicciones/"
 
 
