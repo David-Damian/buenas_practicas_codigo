@@ -9,7 +9,6 @@ Este archivo puede importarse como modulo y contiene las siguientes funciones:
     * fill_num_na: Rellena valores faltantes en variables numéricas.
 
 """
-import yaml
 import pandas as pd
 
 # Hacer la carga de datos

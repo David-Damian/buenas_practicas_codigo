@@ -7,7 +7,6 @@ del directorio padre.
 import logging
 from matplotlib import pyplot as plt
 import seaborn as sns
-import yaml
 from src import load_clean as cln
 
 
