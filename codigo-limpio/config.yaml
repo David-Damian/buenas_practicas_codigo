@@ -29,7 +29,13 @@ visualization:
   FIGURES_PATH: "./figures/"  # Ruta para almacenar datos
 
 test:
-  TRAIN_PATH: "../data/raw/train.csv"
-  FIGURES_PATH: "../figures/"
+  TRAIN_PATH: "./data/raw/train.csv"
+  TEST_PATH: "./data/raw/test.csv"
+  FIGURES_PATH: "./tests/outputs_of_testing/visualization/"
+  TRAIN_CLEAN: "./tests/outputs_of_testing/"
+  TEST_CLEAN: "./tests/outputs_of_testing/"  
+  TRAIN_PROCESSED: "./tests/outputs_of_testing/"
+  TEST_PROCESSED: "./tests/outputs_of_testing/"
+  PREDICTIONS_PATH: "./tests/outputs_of_testing/pipeline/"
 
 
