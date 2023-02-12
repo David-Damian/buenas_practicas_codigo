@@ -16,7 +16,7 @@ def path():
     el retorno del path() como un argumento.
     '''
     # Abrir yaml para obtener ruta de los datos.
-    with open("../config.yaml", encoding="utf-8") as file:
+    with open("./config.yaml", encoding="utf-8") as file:
         config = yaml.safe_load(file)
     pth = config['test']['TRAIN_PATH']
     return pth
@@ -72,7 +72,7 @@ def vars_incompletas():
                             y entraran al modelo
     '''
     # Abrir yaml para obtener ruta de los datos.
-    with open("../config.yaml", encoding="utf-8") as file:
+    with open("./config.yaml", encoding="utf-8") as file:
         config = yaml.safe_load(file)
     vars_incompletas = config['main']['VARS_INCOMPLETAS']
     return vars_incompletas
