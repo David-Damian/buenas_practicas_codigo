@@ -46,7 +46,9 @@ def test_pipeline_prediccion(data_pth, path_predictions):
     '''
     try:
         pipeline.pipeline_prediccion(data_pth, path_predictions)
-        path = './outputs_of_testing/pipeline'
-        assert len(os.listdir(path)) > 0
+        path_pipeline = path_predictions[3]
+        path_datos = path_predictions[1]
+        assert len(os.listdir(path_pipeline)) > 0
+        assert len(os.listdir(path_datos)) == 4
     except AssertionError as ass_err:
         logging.error("No se han guardado las predicciones")
