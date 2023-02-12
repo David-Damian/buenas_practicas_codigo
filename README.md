@@ -48,6 +48,8 @@ Los directorios han sido marcados en negritas y en cursiva, la descripcion del a
 - En la línea de comandos, posiciónate en la ruta donde esta almacenado este repositorio.
 - Dirígete al directorio `codigo_limpio` ejecutando el comando `cd ./buenas_practicas_codigo/codigo-limpio/`.
 - Ejecuta el el archivo `main_program.py` mediante el comando `python3 main_program.py`.
+### Testing
+Para ejecutar los *tests*, cambiarse al directorio `./codigo-limpio/` y correr el comando `pytest`.
 
 ## Referencias
 * [flake8](https://flake8.pycqa.org/en/latest/)
