@@ -15,6 +15,7 @@ import pandas as pd
 from src import load_clean as cln
 from src import preprocessing as prc
 from src import visualization as vs
+import os
 
 # Abrir yaml
 with open("./config.yaml", encoding="utf-8") as file:
@@ -27,32 +28,37 @@ LABEL_ENCODING = config['main']['LABEL_ENCODING']
 
 # Obtener ruta donde se alamcenaran los datos
 # Almacenar rutas para guardar datos limpios y procesados
+data_pth = [config['data']['TRAIN_PATH'], config['data']['TEST_PATH']]
 clean_path = [config['data']['TRAIN_CLEAN'], config['data']['TEST_CLEAN']]
 train_proc_path = config['data']['TRAIN_PROCESSED']
 test_proc_path = config['data']['TEST_PROCESSED']
 test_proc_path = config['data']['TEST_PROCESSED']
+predict_path = config['data']['PREDICCIONES']
 
 
 # Pipeline de inferencia
 
-def pipeline_prediccion(paths_to_save):
+def pipeline_prediccion(data_path, paths_to_save):
     """
     Este es un pipiline de inderencia/prediccion para el problema de
     house-pricing.
 
     Args:
     -----
+    data_path (List): Lista con dos entradas. La primera, el path de los datos
+                      de entrenamiento en bruto y la segunda los de test en bruto.
     paths_to_save (List): Rutas donde se almacenarán artefactos del modelo en
                           el orden siguiente:
                           [train_limpios, test_limpios,
-                           train_procesados, test_procesados]
+                           train_procesados, test_procesados,
+                           predicciones]
     Return:
     -------
 
     """
     # Cargar conjunto de entrenamiento y prueba
-    train_set = cln.cargar_datos(config['data']['TRAIN_PATH']), 
-    test_set = cln.cargar_datos(config['data']['TEST_PATH'])
+    train_set = cln.cargar_datos(data_path[0])
+    test_set = cln.cargar_datos(data_path[1])
 
     # Deshacerse de variables que no se incluiran en el modelo
     try:
@@ -97,8 +103,8 @@ def pipeline_prediccion(paths_to_save):
         logging.error("No se ha podido rellenar los valores de vars"
                       "numericas porque las categoricas no se rellenaron.")
     # Guardar datos
-    train_clean.to_csv(f"{paths_to_save[0][0]}train", index=False)
-    test_clean.to_csv(f"{paths_to_save[0][1]}test", index=False)
+    train_clean.to_csv(f"{paths_to_save[0][0]}train_clean", index=False)
+    test_clean.to_csv(f"{paths_to_save[0][1]}test_clean", index=False)
 
     # Preprocesamiento
     # Tranformar los datos limpios.
@@ -111,19 +117,19 @@ def pipeline_prediccion(paths_to_save):
     logging.info("Se aplicará un ordinal.encoding para variables ordinales")
     train_proc = prc.ordinal_encoding(train_proc)
     test_proc = prc.ordinal_encoding(test_proc)
-    logging.info("Tarea conclcuida con ÉXITO.")
+    logging.info("Tarea concluida con ÉXITO.")
 
     # Para variables categoricas
     logging.info("Se aplicará un label.encoding para variables categóricas")
     train_proc = prc.codificar_categoricas(train_proc, LABEL_ENCODING)
     test_proc = prc.codificar_categoricas(test_proc, LABEL_ENCODING)
-    logging.info("Tarea conclcuida con ÉXITO.")
+    logging.info("Tarea concluida con ÉXITO.")
 
     # Guardar datos de entrenamiento y prueba procesados
     logging.info("Guardando datos de train y test procesados...")
-    train_proc.to_csv(f"{paths_to_save[1]}train", index=False) # Guardar datos de train
-    test_proc.to_csv(f"{paths_to_save[2]}test", index=False) # Guardar datos de test
-    logging.info("Tarea conclcuida con ÉXITO.")
+    train_proc.to_csv(f"{paths_to_save[1]}train_proc", index=False) # Guardar datos de train
+    test_proc.to_csv(f"{paths_to_save[2]}test_proc", index=False) # Guardar datos de test
+    logging.info("Tarea concluida con ÉXITO.")
 
     # Ajustar modelo
     logging.info("Ajustando un modelo Random Forest...")
@@ -148,9 +154,9 @@ def pipeline_prediccion(paths_to_save):
     submission = pd.DataFrame({"SalePrice": price})
 
     # Guardar predicciones en formato csv
-    submission.to_csv(f"{config['data']['PREDICCIONES']}predicciones",
+    submission.to_csv(f"{paths_to_save[3]}predicciones",
                       index=False)
-    logging.info(f"Listo! Hemos guardado las predicciones en {config['data']['PREDICCIONES']}")
+    logging.info(f"Listo! Hemos guardado las predicciones en {paths_to_save[3]}")
 
 
 if __name__ == "__main__":
@@ -179,10 +185,8 @@ if __name__ == "__main__":
             # Ejecutar script del EDA
             try:
                 logging.info("Construcción de gráficas para EDA comenzadas...")
-                vs.eda()
+                vs.eda(config['data']['TRAIN_PATH'], config['visualization']['FIGURES_PATH'])
                 logging.info("Gráficas terminadas con ÉXITO.")
-                # Verificar que cuando se ejecuta va.eda no haya error del tipo:
-                raise FileNotFoundError
             # Si falla, pare y mande msj de error
             except FileNotFoundError:
                 logging.error("Las graficas no se almacenaron en figures/."
@@ -198,8 +202,9 @@ if __name__ == "__main__":
     # Ejecutar pipeline de prediccion
     try:
         logging.info("Pipeline comenzado...")
-        pipeline_prediccion(paths_to_save=[clean_path,
-                                                train_proc_path, test_proc_path])
+        pipeline_prediccion(data_pth, 
+                            paths_to_save=[clean_path,train_proc_path, 
+                                           test_proc_path, predict_path])
         logging.info("Tarea concluida con ÉXITO.")
     except:
         logging.error("EL pipeline no se terminó.")
