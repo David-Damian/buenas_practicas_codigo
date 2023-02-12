@@ -12,7 +12,7 @@ import main_program as pipeline
 def path():
     '''
     Fixture - La función test_pipeline_prediccion() va a utilizar
-    el retorno del path() como un argumento.
+    el retorno de esta funcion como un argumento.
     '''
     # Abrir yaml para obtener ruta de los datos.
     with open("./config.yaml", encoding="utf-8") as file:
@@ -22,6 +22,10 @@ def path():
 
 @pytest.fixture(scope="module", name='path_predictions')
 def paths_to_save_():
+    '''
+    Fixture - La función test_pipeline_prediccion() va a utilizar
+    el retorno de esta funcion como un argumento.
+    '''
     # Abrir yaml para obtener ruta de los datos.
     with open("./config.yaml", encoding="utf-8") as file:
         config = yaml.safe_load(file)
@@ -36,9 +40,12 @@ def paths_to_save_():
 
 
 def test_pipeline_prediccion(data_pth, path_predictions):
+    '''
+    Probar si el pipeline genera predicciones y las guarda
+    en el lugar correcto.
+    '''
     try:
         pipeline.pipeline_prediccion(data_pth, path_predictions)
-        os.chdir('./tests/')
         path = './outputs_of_testing/pipeline'
         assert len(os.listdir(path)) > 0
     except AssertionError as ass_err:
