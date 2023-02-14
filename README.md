@@ -40,14 +40,16 @@ Los directorios han sido marcados en negritas y en cursiva, la descripcion del a
 
 ## Prerrequisitos
 * `Git`: Para clonar este repositorio
-* `Python 3.6` y las librerías   `scikit-learn`, `pandas`, `yaml` y `json`.
+* Conda.
 
 
 ## Ejecución
 - Clona este repositorio
 - En la línea de comandos, posiciónate en la ruta donde esta almacenado este repositorio.
 - Dirígete al directorio `codigo_limpio` ejecutando el comando `cd ./buenas_practicas_codigo/codigo-limpio/`.
-- Ejecuta el el archivo `main_program.py` mediante el comando `python3 main_program.py`.
+- Ejecuta el comando `conda env create --file environments.yml`
+- Luego, activa el ambiente de conda con el comando `conda activate codiog-limpio-env`
+`- Ejecuta el el archivo `main_program.py` mediante el comando `python3 main_program.py`.
 ### Testing
 Para ejecutar los *tests*, cambiarse al directorio `./codigo-limpio/` y correr el comando `pytest`.
 
