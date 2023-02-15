@@ -25,16 +25,16 @@ Los directorios han sido marcados en negritas y en cursiva, la descripcion del a
 │          ....├─ predicciones      *Carpeta para almacenar predicciones.* <br />
 │          ....├─ processed         *Datos procesados para ingestar al modelo de ML.* <br />
 │          ....└─ raw               *Datos en bruto, sin procesar.* <br />
-│      └── **src**                  *Source code for use in this project.* <br />
+│      └── **src**                  *Código base para la ejecución del proyecto.* <br />
 │         ....├── __init__.py       *Makes src a Python module.* <br />
-│         ....├── load_clean.py     *Scripts to download or generate data.* <br />
+│         ....├── load_clean.py     *Script para importación y limpieza de datos.* <br />
 │         ....├── preprocessing.py  *Script de preprocesamiento de datos.* <br />
 │         ....├── visualization.py  *Script para generare graficas del EDA.* <br />
 │         ....└── ordinal_dict.json *Script para generare graficas del EDA.* <br />
 │   ├── **figures**                *Almacenar graficas del EDA.* <br />
 │   ├── **notebooks**              *Jupyter notebooks con algunos intentos de modularizar el codigo base.* <br />
 │   ├── config.yaml *Archivo de configuracion para algunos scripts* <br />
-│   ├──main_program.py         *Make this project python3 main_program.py* <br />
+│   ├──main_program.py         *Ejecuta este proyecto con `python3 main_program.py`* <br />
 ├── **codigo-sucio**            *Directorio con datos y jupyternotebook a corregir*
 <br />
 
@@ -55,6 +55,8 @@ se entrenará el modelo de *Machine Learning* mediante el comando `python3 main_
 Para ejecutar los *tests*, cambiarse al directorio `./codigo-limpio/` y correr el comando `pytest`.
 
 ## Referencias
+* [Introducción al codigo limpio](https://radiant-biscotti-3f9910.netlify.app/04-codigo_limpio.html)
+* [Código para producción](https://radiant-biscotti-3f9910.netlify.app/05-codigo_para_produccion.html)
 * [flake8](https://flake8.pycqa.org/en/latest/)
 * [pylint](https://docs.pylint.org/)
 * [¿Qué es logging?](https://radiant-biscotti-3f9910.netlify.app/05-codigo_para_produccion.html#logging)
