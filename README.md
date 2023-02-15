@@ -49,7 +49,8 @@ Los directorios han sido marcados en negritas y en cursiva, la descripcion del a
 - Dirígete al directorio `codigo_limpio` ejecutando el comando `cd ./buenas_practicas_codigo/codigo-limpio/`.
 - Ejecuta el comando `conda env create --file environments.yml`
 - Luego, activa el ambiente de conda con el comando `conda activate codiog-limpio-env`
-- Ejecuta el el archivo `main_program.py` mediante el comando `python3 main_program.py`.
+- Ejecuta el el archivo `main_program.py` e incluye como argumento, el máximo numero de hojas con las que
+se entrenará el modelo de *Machine Learning* mediante el comando `python3 main_program.py [max_leaf_nodes]`.
 ### Testing
 Para ejecutar los *tests*, cambiarse al directorio `./codigo-limpio/` y correr el comando `pytest`.
 
