@@ -8,6 +8,7 @@ es decir, un pipeline para predecir.
 
 """
 import logging
+import argparse
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import cross_val_score
 import yaml
@@ -16,6 +17,15 @@ from src import load_clean as cln
 from src import preprocessing as prc
 from src import visualization as vs
 import os
+
+# Parser para pasar como argumento el maximo numero de nodos del
+# modelo RF
+parser = argparse.ArgumentParser(
+prog="main_program.py", 
+usage="whoa, use: %(prog)s [options] number",
+description="maximo numero de nodos del modelo RF usado parapara predecir")
+parser.add_argument('max_leaf_nodes', type=int)
+args = parser.parse_args()
 
 # Abrir yaml
 with open("./config.yaml", encoding="utf-8") as file:
@@ -38,7 +48,7 @@ predict_path = config['data']['PREDICCIONES']
 
 # Pipeline de inferencia
 
-def pipeline_prediccion(data_path, paths_to_save):
+def pipeline_prediccion(data_path, paths_to_save, mln):
     """
     Este es un pipiline de inderencia/prediccion para el problema de
     house-pricing.
@@ -132,12 +142,13 @@ def pipeline_prediccion(data_path, paths_to_save):
     logging.info("Tarea concluida con ÉXITO.")
 
     # Ajustar modelo
-    logging.info("Ajustando un modelo Random Forest...")
+    logging.info("Ajustando un modelo Random Forest con "
+                 f"max_leaf_nodes = {mln}...")
     target_var = train_proc['SalePrice']
     features = train_proc.drop(['SalePrice'], axis=1)
 
     # Crear objeto RandomForestRegressor
-    modelo_candidato = RandomForestRegressor(max_leaf_nodes=250)
+    modelo_candidato = RandomForestRegressor(max_leaf_nodes=mln)
     logging.info(f"Los hiperparámetros del modelo que esta ajustando "
     f"son {modelo_candidato.get_params()}")
     # Ajustar modelo
@@ -160,7 +171,9 @@ def pipeline_prediccion(data_path, paths_to_save):
 
 
 if __name__ == "__main__":
-
+    #argumentos parser
+    args = parser.parse_args()
+    leaf_nodes = args.max_leaf_nodes
     # Inicializar logger
     logging.basicConfig(filename='./logs/results.log',
                         level=logging.INFO,
@@ -204,7 +217,7 @@ if __name__ == "__main__":
         logging.info("Pipeline comenzado...")
         pipeline_prediccion(data_pth, 
                             paths_to_save=[clean_path,train_proc_path, 
-                                           test_proc_path, predict_path])
+                                           test_proc_path, predict_path], mln=leaf_nodes)
         logging.info("Tarea concluida con ÉXITO.")
     except:
         logging.error("EL pipeline no se terminó.")
