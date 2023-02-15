@@ -46,7 +46,6 @@ Los directorios han sido marcados en negritas y en cursiva, la descripcion del a
 ## Ejecución
 - Clona este repositorio
 - En la línea de comandos, posiciónate en la ruta donde esta almacenado este repositorio.
-- Dirígete al directorio `codigo_limpio` ejecutando el comando `cd ./buenas_practicas_codigo/codigo-limpio/`.
 - Ejecuta el comando `conda env create --file environments.yml`
 - Luego, activa el ambiente de conda con el comando `conda activate codiog-limpio-env`
 - Ejecuta el el archivo `main_program.py` e incluye como argumento, el máximo numero de hojas con las que
